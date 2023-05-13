@@ -1,6 +1,7 @@
 extends Node2D
 
 export (int) var damage_amount
+
 var direction : Vector2 = Vector2.UP
 var speed : float = 100 
 

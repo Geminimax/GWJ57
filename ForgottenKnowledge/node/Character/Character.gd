@@ -25,8 +25,8 @@ func handle_spell():
 func cast_spell():
 	var spell = spell_holder.get_selected_spell()
 	if(current_mp > spell.mana_cost):
-		current_mp -= spell.mana_cost
-		spell.cast(self, get_global_mouse_position())
+		if (spell.cast(self, get_global_mouse_position())):
+			current_mp -= spell.mana_cost
 
 func handle_mp(delta):	
 	if(current_mp < total_mp):

@@ -10,7 +10,7 @@ var selected_spell = 0
 onready var tween = $Tween
 
 func _ready():
-	pass # Replace with function body.
+	add_spell(get_test_spell())
 
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_accept")):
