@@ -1,15 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://node/UI/SpellHolder.gd" type="Script" id=1]
 [ext_resource path="res://node/UI/SpellCard.tscn" type="PackedScene" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
 
 [node name="SpellHolder" type="Node2D"]
-position = Vector2( 403, 249 )
 script = ExtResource( 1 )
 spell_card_scene = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="Icon" type="Sprite" parent="."]
-texture = ExtResource( 3 )

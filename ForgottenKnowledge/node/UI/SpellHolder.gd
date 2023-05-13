@@ -1,9 +1,5 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 export (PackedScene) var spell_card_scene
 
 var test_spell = load("res://node/Spell/Spell.tscn")
@@ -12,25 +8,23 @@ var card_size = 60
 var spell_cards : Array = [] 
 var selected_spell = 0
 onready var tween = $Tween
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
     pass # Replace with function body.
 
 func _process(delta):
-    if(Input.is_action_just_pressed("ui_up")):
+    if(Input.is_action_just_pressed("ui_accept")):
         add_spell(get_test_spell())
-    if(Input.is_action_just_pressed("ui_down")):
+    if(Input.is_action_just_pressed("ui_cancel")):
         remove_spell(spell_cards.size() - 1)
     if(Input.is_action_just_released("spell_roll_left")):
         change_selected_spell(-1)
     if(Input.is_action_just_released("spell_roll_right")):
         change_selected_spell(1)
-    if(Input.is_action_just_pressed("cast_spell")):
-        cast_spell()
 
-func cast_spell():
-    var current_spell = spell_cards[selected_spell]
-    current_spell.spell.cast(self, get_global_mouse_position())
+func get_selected_spell():
+    return spell_cards[selected_spell].spell
+
 func get_test_spell():
     var spell_instance = load("res://node/Spell/SpellShoot.tscn").instance()
     add_child(spell_instance)
