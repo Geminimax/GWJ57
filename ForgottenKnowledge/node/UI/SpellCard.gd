@@ -20,4 +20,4 @@ func set_selected(value):
 func set_spell(value):
     spell = value
     if(spell):
-        $Sprite.texture = spell.texture
+        $Sprite.texture = spell.spell_img

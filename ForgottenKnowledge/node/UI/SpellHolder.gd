@@ -6,6 +6,8 @@ extends Node2D
 # var b = "text"
 export (PackedScene) var spell_card_scene
 
+var test_spell = load("res://node/Spell/Spell.tscn")
+
 var card_size = 60
 var spell_cards : Array = [] 
 var selected_spell = 0
@@ -16,15 +18,27 @@ func _ready():
 
 func _process(delta):
     if(Input.is_action_just_pressed("ui_up")):
-        add_spell(null)
+        add_spell(get_test_spell())
     if(Input.is_action_just_pressed("ui_down")):
         remove_spell(spell_cards.size() - 1)
     if(Input.is_action_just_released("spell_roll_left")):
         change_selected_spell(-1)
     if(Input.is_action_just_released("spell_roll_right")):
         change_selected_spell(1)
-        
+    if(Input.is_action_just_pressed("cast_spell")):
+        cast_spell()
+
+func cast_spell():
+    var current_spell = spell_cards[selected_spell]
+    current_spell.spell.cast(self, get_global_mouse_position())
+func get_test_spell():
+    var spell_instance = load("res://node/Spell/SpellShoot.tscn").instance()
+    add_child(spell_instance)
+    return spell_instance
+    
 func change_selected_spell(offset):
+    if(spell_cards.size() == 0):
+        return
     spell_cards[selected_spell].selected = false
     selected_spell += offset
     if(selected_spell < 0):
@@ -32,6 +46,7 @@ func change_selected_spell(offset):
     if(selected_spell > spell_cards.size() - 1):
         selected_spell = (selected_spell - (spell_cards.size()))
     spell_cards[selected_spell].selected = true
+    
 func add_spell(spell):
     var spell_card_instance = spell_card_scene.instance()
     add_child(spell_card_instance)
@@ -51,6 +66,8 @@ func remove_spell(index):
         selected_spell = max(index - 1,0)
 
 func reposition_cards():
+    if(spell_cards.size() == 0):
+        return
     tween.stop_all()
     var total_size = card_size * spell_cards.size()
     var initial_position = -total_size/2
