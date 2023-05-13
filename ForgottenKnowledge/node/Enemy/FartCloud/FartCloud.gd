@@ -1,10 +1,20 @@
 extends "res://node/Enemy/Enemy.gd"
 
+var fart = load("res://node/Enemy/FartCloud/Fart.tscn")
+
 var move_speed = 200
-var fart_rate = 1
+var fart_rate = .4
+var time_elapsed = 0
+
 
 func _process(delta):
 	handle_movement()
+	
+	time_elapsed += delta
+	if (time_elapsed >= fart_rate):
+		time_elapsed = 0
+		fart(position)
+
 	
 	
 func handle_movement():
@@ -24,4 +34,7 @@ func handle_movement():
 	move_and_slide(direction * move_speed)
 
 func fart(position):
-	pass
+	var fart_instance = fart.instance()
+	get_tree().root.add_child(fart_instance)
+	fart_instance.global_position = position
+	fart_instance.z_index = -1

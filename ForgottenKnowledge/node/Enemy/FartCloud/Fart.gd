@@ -1,7 +1,6 @@
 extends "res://node/Enemy/Enemy.gd"
 
-onready hp = $HP
+var depletion = 50
 
 func _process(delta):
-	hp.damage(delta)
-	
+	hp.damage(delta * depletion)
