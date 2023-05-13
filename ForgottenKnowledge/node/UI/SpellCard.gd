@@ -5,11 +5,11 @@ var selected = false setget set_selected
 var spell = false setget set_spell
 
 func _ready():
-    $Sprite.material = $Sprite.material.duplicate()
+    $Back.material = $Back.material.duplicate()
 
 func set_selected(value):
     selected = value
-    $Sprite.material.set_shader_param("enabled",selected)
+    $Back.material.set_shader_param("enabled",selected)
     
     $Tween.remove_all()
     if(selected):
