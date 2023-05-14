@@ -1,14 +1,21 @@
 extends "res://node/Enemy/Enemy.gd"
 
+export (NodePath) var target
+
 var fart = load("res://node/Enemy/FartCloud/Fart.tscn")
 
 var move_speed = 200
 var fart_rate = .4
 var time_elapsed = 0
+var velocity = Vector2.ZERO
 
+onready var pathfinder = $Pathfinder
+
+func _ready():
+	pathfinder.set_target(get_node(target))
 
 func _process(delta):
-	handle_movement()
+	handle_movement(delta)
 	
 	time_elapsed += delta
 	if (time_elapsed >= fart_rate):
@@ -17,21 +24,14 @@ func _process(delta):
 
 	
 	
-func handle_movement():
-	var direction = Vector2()
+func handle_movement(delta):
+	var direction = pathfinder.get_target_direction()
+
+	var desired_velocity = direction * speed
+	var steering = (desired_velocity - velocity) * delta * 4.0
+	velocity += steering
 	
-	if(Input.is_action_pressed("ui_up")):
-		direction += Vector2.UP
-	if(Input.is_action_pressed("ui_down")):
-		direction += Vector2.DOWN	
-	if(Input.is_action_pressed("ui_left")):
-		direction += Vector2.LEFT
-	if(Input.is_action_pressed("ui_right")):
-		direction += Vector2.RIGHT
-		
-	direction = direction.normalized()
-	
-	move_and_slide(direction * move_speed)
+	velocity = move_and_slide(velocity)
 
 func fart(position):
 	var fart_instance = fart.instance()

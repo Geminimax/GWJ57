@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://node/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://node/Enemy/Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://node/UI/CustomMouse.tscn" type="PackedScene" id=3]
+[ext_resource path="res://node/Enemy/FartCloud/FartCloud.tscn" type="PackedScene" id=4]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 477, 11, 480, 257, 12, 258, 15, 16 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 477, 11, 480, 257, 12, 258, 15, 16 ) ]
 
 [node name="World" type="Node2D"]
 
@@ -11,3 +17,12 @@
 [node name="Enemy" parent="." instance=ExtResource( 2 )]
 
 [node name="CustomMouse" parent="." instance=ExtResource( 3 )]
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+navpoly = SubResource( 1 )
+
+[node name="Fart" parent="Navigation2D" instance=ExtResource( 4 )]
+speed = 80
+target = NodePath("../../Player")
