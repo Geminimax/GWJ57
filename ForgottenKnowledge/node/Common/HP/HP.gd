@@ -8,7 +8,6 @@ var current = total
 
 func damage(amount):
 	current -= amount
-	print(current)
 	
 	if (current <= 0):
 		emit_signal("died")
