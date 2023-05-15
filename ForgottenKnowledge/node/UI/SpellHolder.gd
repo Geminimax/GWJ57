@@ -33,6 +33,7 @@ func get_test_spell(path):
 func change_selected_spell(offset):
 	if(spell_cards.size() == 0):
 		return
+	spell_cards[selected_spell].spell.stop_casting()
 	spell_cards[selected_spell].selected = false
 	selected_spell += offset
 	if(selected_spell < 0):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://node/Spell/Spell.tscn" type="PackedScene" id=1]
 [ext_resource path="res://node/Spell/SpellLeech.gd" type="Script" id=2]
+[ext_resource path="res://node/VFX/BeamEffect.tscn" type="PackedScene" id=3]
 
 [node name="SpellLeech" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -10,3 +11,7 @@ target_mask = 4
 spell_img = null
 mana_cost = 0
 cooldown = 0.0
+
+[node name="BeamEffect" parent="." index="0" instance=ExtResource( 3 )]
+z_index = -1
+z_as_relative = false

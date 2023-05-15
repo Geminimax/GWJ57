@@ -20,8 +20,12 @@ func _process(delta):
 func handle_spell(delta):
 	if(Input.is_action_pressed("cast_spell")):
 		cast_spell(delta)
-	
+	if(Input.is_action_just_released("cast_spell")):
+		stop_casting_current_spell()
 
+func stop_casting_current_spell():
+	var spell = spell_holder.get_selected_spell()
+	spell.stop_casting()
 func cast_spell(delta):
 	print("Cast spell")
 	var spell = spell_holder.get_selected_spell()

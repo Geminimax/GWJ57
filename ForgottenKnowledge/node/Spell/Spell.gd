@@ -7,7 +7,7 @@ export (String) var spell_name
 export (String) var spell_description
 export (int) var mana_cost = 1
 export (float) var cooldown = 0.3
-
+var is_casting = false
 var curr_cooldown = 0
 
 func _process(delta):
@@ -17,19 +17,27 @@ func get_current_cooldown():
 	return curr_cooldown
 
 func cast(source,target,delta = 0):
+	is_casting = true
 	if (curr_cooldown > 0):
 		return false
-	print("casting")
 	if(cast_type == CAST_TYPE.CAST_AT_POSITION):
-		print("casting at position")
 		cast_at_position(source, target, delta)
 	elif(cast_type == CAST_TYPE.CAST_AT_TARGET):
-		print("casting at target")
 		var target_node = get_target(target)
-		cast_at_target(source, target, delta)
+		if(target_node == null):
+			return false
+		cast_at_target(source, target_node, delta)
 		
 	curr_cooldown = cooldown
 	return true
+
+func stop_casting():
+	if(is_casting):
+		is_casting = false
+		on_stop_casting()
+
+func on_stop_casting():
+	pass
 
 func get_target(target):
 	var space = get_world_2d().direct_space_state

@@ -1,0 +1,33 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://sprite/manaleech/2Manaleech.png" type="Texture" id=1]
+[ext_resource path="res://node/VFX/BeamEffect.gd" type="Script" id=2]
+[ext_resource path="res://sprite/manaleech/Head5.png" type="Texture" id=3]
+[ext_resource path="res://sprite/manaleech/Head4.png" type="Texture" id=4]
+[ext_resource path="res://sprite/manaleech/Head1.png" type="Texture" id=5]
+[ext_resource path="res://sprite/manaleech/Head2.png" type="Texture" id=6]
+[ext_resource path="res://sprite/manaleech/Head3.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 18.0
+} ]
+
+[node name="BeamEffect" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 5, -3 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 24, 10 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 1 )
+frame = 4
+playing = true
