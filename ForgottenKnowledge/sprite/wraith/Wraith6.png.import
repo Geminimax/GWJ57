@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Arrpow.png-ec6e6587a0e03c047059bc915d3d47d3.stex"
+path="res://.import/Wraith6.png-db86a54b782aa568ebb9e6d24429a344.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprite/Arrpow.png"
-dest_files=[ "res://.import/Arrpow.png-ec6e6587a0e03c047059bc915d3d47d3.stex" ]
+source_file="res://sprite/wraith/Wraith6.png"
+dest_files=[ "res://.import/Wraith6.png-db86a54b782aa568ebb9e6d24429a344.stex" ]
 
 [params]
 

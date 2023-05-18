@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://node/Spell/Spell.gd" type="Script" id=1]
-[ext_resource path="res://sprite/Arrpow.png" type="Texture" id=2]
+[ext_resource path="res://sprite/spell/Arrpow.png" type="Texture" id=2]
 
 [node name="Spell" type="Node2D"]
 script = ExtResource( 1 )

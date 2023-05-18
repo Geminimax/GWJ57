@@ -1,8 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://node/UI/SpellCard.gd" type="Script" id=1]
-[ext_resource path="res://sprite/Scroll.png" type="Texture" id=2]
+[ext_resource path="res://sprite/scroll/ScrollAppear11.png" type="Texture" id=2]
 [ext_resource path="res://shader/Outline.shader" type="Shader" id=3]
+[ext_resource path="res://sprite/scroll/ScrollAppear7.png" type="Texture" id=4]
+[ext_resource path="res://sprite/scroll/ScrollAppear12.png" type="Texture" id=5]
+[ext_resource path="res://sprite/scroll/ScrollAppear15.png" type="Texture" id=6]
+[ext_resource path="res://sprite/scroll/ScrollAppear1.png" type="Texture" id=7]
+[ext_resource path="res://sprite/scroll/ScrollAppear4.png" type="Texture" id=8]
+[ext_resource path="res://sprite/scroll/ScrollAppear3.png" type="Texture" id=9]
+[ext_resource path="res://sprite/scroll/ScrollAppear14.png" type="Texture" id=10]
+[ext_resource path="res://sprite/scroll/ScrollAppear2.png" type="Texture" id=11]
+[ext_resource path="res://sprite/scroll/ScrollAppear5.png" type="Texture" id=12]
+[ext_resource path="res://sprite/scroll/ScrollAppear6.png" type="Texture" id=13]
+[ext_resource path="res://sprite/scroll/ScrollAppear8.png" type="Texture" id=14]
+[ext_resource path="res://sprite/scroll/ScrollAppear9.png" type="Texture" id=15]
+[ext_resource path="res://sprite/scroll/ScrollAppear10.png" type="Texture" id=16]
+[ext_resource path="res://sprite/scroll/ScrollAppear13.png" type="Texture" id=17]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
@@ -10,12 +24,26 @@ shader_param/enabled = false
 shader_param/line_color = Color( 1, 1, 1, 1 )
 shader_param/line_thickness = 1.0
 
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 4 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 17 ), ExtResource( 10 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "appear",
+"speed": 28.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="SpellCard" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Back" type="Sprite" parent="."]
+[node name="Back" type="AnimatedSprite" parent="."]
 material = SubResource( 1 )
-texture = ExtResource( 2 )
+frames = SubResource( 2 )
+animation = "appear"
 
 [node name="Sprite" type="Sprite" parent="."]
 

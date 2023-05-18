@@ -1,17 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://node/Spell/Spell.tscn" type="PackedScene" id=1]
 [ext_resource path="res://node/Spell/SpellLeech.gd" type="Script" id=2]
-[ext_resource path="res://node/VFX/BeamEffect.tscn" type="PackedScene" id=3]
+[ext_resource path="res://node/VFX/ManaleechVFXProjectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://node/VFX/VFXProjectileSpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprite/spell/Leech.png" type="Texture" id=5]
+[ext_resource path="res://sprite/spell/SpellLeechIcon.png" type="Texture" id=6]
 
 [node name="SpellLeech" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 cast_type = 1
 target_mask = 4
-spell_img = null
+spell_img = ExtResource( 5 )
+spell_img_small = ExtResource( 6 )
 mana_cost = 0
 cooldown = 0.0
 
-[node name="BeamEffect" parent="." index="0" instance=ExtResource( 3 )]
-z_index = -1
-z_as_relative = false
+[node name="VFXProjectileSpawner" parent="." index="0" instance=ExtResource( 4 )]
+bullet = ExtResource( 3 )
+cooldown = 0.15

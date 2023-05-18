@@ -13,8 +13,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     global_position += direction * speed * delta
-
+    global_rotation = direction.angle()
 
 
 func _on_CollisionArea_area_entered(area):
+    $CollisionArea/CollisionShape2D.set_deferred("disabled",true)
+    $AnimatedSprite.play("destroy")
+    speed = 0
+    yield($AnimatedSprite,"animation_finished")
     queue_free()

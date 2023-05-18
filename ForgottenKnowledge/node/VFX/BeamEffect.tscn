@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sprite/manaleech/2Manaleech.png" type="Texture" id=1]
 [ext_resource path="res://node/VFX/BeamEffect.gd" type="Script" id=2]
@@ -7,6 +7,25 @@
 [ext_resource path="res://sprite/manaleech/Head1.png" type="Texture" id=5]
 [ext_resource path="res://sprite/manaleech/Head2.png" type="Texture" id=6]
 [ext_resource path="res://sprite/manaleech/Head3.png" type="Texture" id=7]
+
+[sub_resource type="Shader" id=2]
+code = "
+shader_type canvas_item;
+
+uniform bool enabled = false;
+uniform vec4 line_color : hint_color = vec4(1);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+void fragment() {
+    vec4 color = texture(TEXTURE, UV + TIME * vec2(2.0,0.0));
+    COLOR = color;    
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/enabled = false
+shader_param/line_color = Color( 1, 1, 1, 1 )
+shader_param/line_thickness = 1.0
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -20,14 +39,12 @@ animations = [ {
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 5, -3 )
+material = SubResource( 3 )
 texture = ExtResource( 1 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 24, 10 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-visible = false
 frames = SubResource( 1 )
-frame = 4
 playing = true
